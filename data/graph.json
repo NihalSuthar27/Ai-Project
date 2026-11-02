@@ -1,0 +1,203 @@
+{
+  "depot": "DEPOT",
+  "nodes": [
+    {
+      "id": "DEPOT",
+      "name": "Municipal Depot",
+      "type": "depot",
+      "lat": 30.905,
+      "lng": 75.838,
+      "zoneId": null
+    },
+    {
+      "id": "N1",
+      "name": "North Gate",
+      "type": "junction",
+      "lat": 30.914,
+      "lng": 75.842,
+      "zoneId": "Z-01"
+    },
+    {
+      "id": "N2",
+      "name": "Garden Cross",
+      "type": "collection",
+      "lat": 30.92,
+      "lng": 75.85,
+      "zoneId": "Z-01"
+    },
+    {
+      "id": "N3",
+      "name": "Central Square",
+      "type": "junction",
+      "lat": 30.905,
+      "lng": 75.852,
+      "zoneId": "Z-02"
+    },
+    {
+      "id": "N4",
+      "name": "Market Lane",
+      "type": "collection",
+      "lat": 30.902,
+      "lng": 75.861,
+      "zoneId": "Z-02"
+    },
+    {
+      "id": "N5",
+      "name": "University Gate",
+      "type": "collection",
+      "lat": 30.915,
+      "lng": 75.869,
+      "zoneId": "Z-04"
+    },
+    {
+      "id": "N6",
+      "name": "Library Road",
+      "type": "junction",
+      "lat": 30.908,
+      "lng": 75.866,
+      "zoneId": "Z-04"
+    },
+    {
+      "id": "N7",
+      "name": "Riverfront Point",
+      "type": "collection",
+      "lat": 30.896,
+      "lng": 75.875,
+      "zoneId": "Z-03"
+    },
+    {
+      "id": "N8",
+      "name": "East Bridge",
+      "type": "junction",
+      "lat": 30.899,
+      "lng": 75.864,
+      "zoneId": "Z-03"
+    },
+    {
+      "id": "N9",
+      "name": "Industrial Gate",
+      "type": "collection",
+      "lat": 30.887,
+      "lng": 75.851,
+      "zoneId": "Z-05"
+    },
+    {
+      "id": "N10",
+      "name": "Factory Road",
+      "type": "junction",
+      "lat": 30.891,
+      "lng": 75.843,
+      "zoneId": "Z-05"
+    },
+    {
+      "id": "N11",
+      "name": "South Crossing",
+      "type": "junction",
+      "lat": 30.895,
+      "lng": 75.849,
+      "zoneId": "Z-05"
+    }
+  ],
+  "edges": [
+    [
+      "DEPOT",
+      "N1",
+      1.8
+    ],
+    [
+      "DEPOT",
+      "N3",
+      1.5
+    ],
+    [
+      "DEPOT",
+      "N10",
+      3.0
+    ],
+    [
+      "N1",
+      "N2",
+      1.2
+    ],
+    [
+      "N1",
+      "N3",
+      1.9
+    ],
+    [
+      "N2",
+      "N5",
+      2.1
+    ],
+    [
+      "N3",
+      "N4",
+      1.0
+    ],
+    [
+      "N3",
+      "N6",
+      1.7
+    ],
+    [
+      "N4",
+      "N6",
+      1.1
+    ],
+    [
+      "N4",
+      "N8",
+      2.0
+    ],
+    [
+      "N5",
+      "N6",
+      1.0
+    ],
+    [
+      "N5",
+      "N7",
+      2.8
+    ],
+    [
+      "N6",
+      "N7",
+      2.2
+    ],
+    [
+      "N7",
+      "N8",
+      1.0
+    ],
+    [
+      "N8",
+      "N11",
+      2.4
+    ],
+    [
+      "N10",
+      "N11",
+      1.2
+    ],
+    [
+      "N11",
+      "N3",
+      2.1
+    ],
+    [
+      "N10",
+      "N9",
+      1.6
+    ],
+    [
+      "N9",
+      "N11",
+      1.8
+    ],
+    [
+      "N2",
+      "N3",
+      2.5
+    ]
+  ]
+}

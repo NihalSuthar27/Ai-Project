@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#176b50">
+  <title>EcoSort AI — Smart Waste Management</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+</head>
+<body>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="EcoSort AI home">
+        <span class="brand-mark">E</span>
+        <span><strong>EcoSort</strong><small>SMART CITY SYSTEM</small></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-page="overview"><span>◫</span> Overview</button>
+        <button class="nav-item" data-page="analyze"><span>⌕</span> Waste scanner <span class="nav-pill">AI</span></button>
+        <button class="nav-item" data-page="requests"><span>▤</span> Collection requests</button>
+        <button class="nav-item" data-page="routes"><span>⌁</span> Route planner</button>
+        <button class="nav-item" data-page="zones"><span>◉</span> Zone intelligence</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="api-status"><span class="status-dot"></span><div><strong>Prototype mode</strong><small id="mode-status">Demo data active</small></div></div>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Settings & API</button>
+        <div class="sidebar-foot">SIH25060 · Academic prototype<br>EcoSort AI v1.0</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Open menu">☰</button>
+        <div class="breadcrumb"><span>EcoSort AI</span><span class="crumb-slash">/</span><strong id="page-crumb">Overview</strong></div>
+        <div class="top-actions">
+          <span class="demo-badge"><span></span> Prototype</span>
+          <button class="avatar" title="Demo administrator">EA</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-overview">
+        <div class="welcome-row">
+          <div><div class="eyebrow">MUNICIPAL INTELLIGENCE PLATFORM</div><h1>Waste management,<br><em>made smarter.</em></h1><p class="lead">Recognize waste, guide residents, and plan collection with explainable AI and intelligent routing.</p></div>
+          <div class="welcome-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="leaf-shape">✳</div><div class="art-chip chip-one">AI vision</div><div class="art-chip chip-two">A* routing</div></div>
+        </div>
+        <div class="quick-actions">
+          <button class="quick-card" data-go="analyze"><span class="quick-icon mint">⌕</span><span><strong>Scan waste</strong><small>Identify an item from a photo</small></span><b>↗</b></button>
+          <button class="quick-card" data-go="requests"><span class="quick-icon lilac">▤</span><span><strong>Manage pickups</strong><small>Track collection requests</small></span><b>↗</b></button>
+          <button class="quick-card" data-go="routes"><span class="quick-icon amber">⌁</span><span><strong>Plan a route</strong><small>Optimize municipal collection</small></span><b>↗</b></button>
+        </div>
+        <div class="section-heading"><div><h2>Operational snapshot</h2><p>Sample data from the prototype environment</p></div><span class="subtle-label">UPDATED JUST NOW</span></div>
+        <div class="metric-grid" id="overview-metrics"></div>
+        <div class="overview-grid">
+          <article class="panel">
+            <div class="panel-head"><div><h3>Collection activity</h3><p>Requests by current status</p></div><span class="panel-icon">▥</span></div>
+            <div id="status-chart" class="bar-chart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><h3>Zone compliance</h3><p>Segregation compliance history</p></div><button class="text-button" data-go="zones">View zones ↗</button></div>
+            <div id="compliance-list" class="compliance-list"></div>
+          </article>
+        </div>
+        <div class="disclaimer"><span>ⓘ</span><p><strong>Prototype data:</strong> Locations, compliance values, and requests are simulated for demonstration. Do not treat this dashboard as a live municipal service.</p></div>
+      </section>
+
+      <section class="page" id="page-analyze">
+        <div class="page-heading"><div><div class="eyebrow">GEMINI VISION WORKFLOW</div><h1>Waste scanner</h1><p>Upload an image to classify the item, review uncertainty, and get disposal guidance.</p></div><span class="feature-tag">✦ AI ASSISTED</span></div>
+        <div class="scanner-layout">
+          <article class="panel upload-panel">
+            <div class="panel-head"><div><h3>Upload waste image</h3><p>Clear, well-lit photos work best.</p></div><span class="panel-icon">↥</span></div>
+            <label class="upload-zone" id="upload-zone" for="waste-image">
+              <input id="waste-image" type="file" accept="image/png,image/jpeg,image/webp">
+              <span class="upload-illustration">↥</span><strong>Drop an image here</strong><span>or <u>browse files</u></span><small>JPG, PNG or WEBP · max 8 MB</small>
+            </label>
+            <div id="image-preview-wrap" class="image-preview-wrap hidden"><img id="image-preview" alt="Selected waste item"><button class="remove-image" id="remove-image" type="button">Remove image ×</button></div>
+            <div class="field"><label for="resident-note">Optional context</label><textarea id="resident-note" rows="2" placeholder="e.g. Found in kitchen, item may contain food residue..."></textarea></div>
+            <button class="button primary full" id="analyze-button">✦ Analyze with Gemini</button>
+            <button class="button secondary full" id="demo-analyze-button">Try sample analysis instead</button>
+            <p class="microcopy">Your image is sent to Google Gemini only when you choose AI analysis. Demo analysis uses simulated results.</p>
+          </article>
+          <article class="panel result-panel">
+            <div class="panel-head"><div><h3>Analysis result</h3><p>Prediction, evidence, and recommended next action.</p></div><span class="result-live" id="result-live">WAITING</span></div>
+            <div id="analysis-empty" class="empty-result"><div class="empty-orb">✳</div><h3>Your result will appear here</h3><p>Upload an image and start an analysis, or try the sample flow to explore the interface.</p></div>
+            <div id="analysis-loading" class="loading-state hidden"><div class="spinner"></div><strong>Analyzing image…</strong><p>Checking visible features and preparing a recommendation.</p></div>
+            <div id="analysis-result" class="hidden"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page" id="page-requests">
+        <div class="page-heading"><div><div class="eyebrow">SERVICE OPERATIONS</div><h1>Collection requests</h1><p>Review resident submissions and track them through the collection workflow.</p></div><button class="button primary" id="new-request-button">＋ New request</button></div>
+        <div class="metric-grid compact" id="request-metrics"></div>
+        <article class="panel">
+          <div class="table-toolbar"><div><h3>Request register</h3><p>All sample and locally created requests</p></div><div class="toolbar-controls"><input id="request-search" class="search-input" placeholder="Search request, zone…"><select id="request-filter" aria-label="Filter requests"><option value="all">All statuses</option><option value="SUBMITTED">Submitted</option><option value="NEEDS_REVIEW">Needs review</option><option value="APPROVED">Approved</option><option value="SCHEDULED">Scheduled</option><option value="IN_PROGRESS">In progress</option><option value="COMPLETED">Completed</option><option value="REJECTED">Rejected</option></select></div></div>
+          <div class="table-wrap"><table><thead><tr><th>REQUEST</th><th>WASTE TYPE</th><th>ZONE</th><th>PRIORITY</th><th>STATUS</th><th>SUBMITTED</th><th>ACTION</th></tr></thead><tbody id="requests-table"></tbody></table></div>
+          <div id="requests-empty" class="table-empty hidden">No requests match your filters.</div>
+        </article>
+      </section>
+
+      <section class="page" id="page-routes">
+        <div class="page-heading"><div><div class="eyebrow">PATHFINDING & COLLECTION LOGISTICS</div><h1>Route planner</h1><p>Calculate paths with the custom A* algorithm and factor in zone compliance.</p></div><span class="feature-tag">A* ENGINE</span></div>
+        <div class="route-controls panel">
+          <div class="field"><label for="depot-select">Starting depot</label><select id="depot-select"></select></div>
+          <div class="field"><label for="route-strategy">Stop order strategy</label><select id="route-strategy"><option value="nearest">Nearest-neighbor heuristic</option><option value="input">Zone order (baseline)</option></select></div>
+          <div class="field"><label for="compliance-weight">Compliance weight <strong id="weight-value">2.0</strong></label><input type="range" id="compliance-weight" min="0" max="10" step="0.5" value="2"><small>Higher values increase the route cost of low-compliance zones.</small></div>
+          <button class="button primary" id="plan-route-button">⌁ Calculate route</button>
+        </div>
+        <div class="route-layout">
+          <article class="panel map-panel"><div class="panel-head"><div><h3>Collection network</h3><p>Illustrative road graph · not live road data</p></div><span class="map-legend"><i></i> Selected route</span></div><div id="route-map" class="route-map"></div><div class="map-footer"><span>● Depot</span><span>● Collection point</span><span>━ Planned path</span></div></article>
+          <article class="panel route-summary"><div class="panel-head"><div><h3>Route summary</h3><p>Current optimization result</p></div></div><div id="route-result"><div class="empty-small"><span>⌁</span><strong>No route calculated yet</strong><p>Choose the routing settings and calculate a route.</p></div></div></article>
+        </div>
+        <div class="disclaimer"><span>ⓘ</span><p>A* finds a path between two nodes. This prototype adds a nearest-neighbor stop-order heuristic for multiple stops; the full tour is not guaranteed globally optimal. Compliance weighting is an illustrative policy model.</p></div>
+      </section>
+
+      <section class="page" id="page-zones">
+        <div class="page-heading"><div><div class="eyebrow">HISTORICAL PERFORMANCE</div><h1>Zone intelligence</h1><p>Review compliance history and simulated collection demand by municipal zone.</p></div><span class="feature-tag">5 DEMO ZONES</span></div>
+        <div class="zone-grid" id="zone-grid"></div>
+        <article class="panel">
+          <div class="panel-head"><div><h3>Compliance and collection demand</h3><p>Sample operational indicators</p></div></div>
+          <div class="table-wrap"><table><thead><tr><th>ZONE</th><th>COMPLIANCE</th><th>PENDING REQUESTS</th><th>AVG. SERVICE TIME</th><th>DEMO CONTROL</th></tr></thead><tbody id="zones-table"></tbody></table></div>
+        </article>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-heading"><div><div class="eyebrow">CONFIGURATION</div><h1>Settings & API</h1><p>Configure the Gemini connection and prototype behavior.</p></div></div>
+        <div class="settings-grid">
+          <article class="panel">
+            <div class="panel-head"><div><h3>Gemini API connection</h3><p>Use a supported Gemini model with image input.</p></div><span class="panel-icon">✦</span></div>
+            <div class="notice warning"><strong>Browser-only security note</strong><p>The API key is used directly by this browser application. It is kept in session storage, but browser-based keys can still be inspected. Use only for a personal demo; production needs a secured server-side proxy.</p></div>
+            <div class="field"><label for="api-key">Gemini API key</label><input id="api-key" type="password" autocomplete="off" placeholder="Paste your API key"><small>The key is not saved in the project files.</small></div>
+            <div class="field"><label for="gemini-model">Model ID</label><input id="gemini-model" value="gemini-2.5-flash" spellcheck="false"><small>Change this to a model available to your API key.</small></div>
+            <div class="settings-actions"><button class="button primary" id="save-api-button">Save for this session</button><button class="button secondary" id="clear-api-button">Clear key</button></div>
+            <div id="api-message" class="inline-message hidden"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><h3>Prototype configuration</h3><p>Settings used by the client-side policy and route engine.</p></div></div>
+            <div class="config-row"><div><strong>Confidence threshold</strong><small>Below this value, request human review.</small></div><strong>80%</strong></div>
+            <div class="config-row"><div><strong>Storage</strong><small>Request changes persist in this browser.</small></div><span class="config-value">localStorage</span></div>
+            <div class="config-row"><div><strong>Initial data</strong><small>Loaded from JSON files on startup.</small></div><span class="config-value">JSON</span></div>
+            <div class="config-row"><div><strong>Route engine</strong><small>Custom A* + nearest-neighbor stop ordering.</small></div><span class="config-value">JavaScript</span></div>
+            <button class="button danger-outline full" id="reset-data-button">Reset local demo data</button>
+            <p class="microcopy">Reset restores the sample requests and zone values. Your API key is managed separately.</p>
+          </article>
+        </div>
+        <article class="panel documentation-panel"><h3>What this prototype demonstrates</h3><div class="doc-grid"><div><span>01</span><strong>Multimodal AI</strong><p>Gemini analyzes a submitted waste image and returns structured fields.</p></div><div><span>02</span><strong>Policy guardrails</strong><p>Deterministic rules can override unsafe or uncertain model advice.</p></div><div><span>03</span><strong>Explainability</strong><p>Visible evidence and uncertainty are presented as model-generated text, not a fabricated heatmap.</p></div><div><span>04</span><strong>Route optimization</strong><p>A* computes graph paths; a separate heuristic orders multiple stops.</p></div></div></article>
+      </section>
+
+      <footer class="footer"><span>EcoSort AI · SIH25060</span><span>Built for academic demonstration · Not a live municipal service</span></footer>
+    </main>
+  </div>
+
+  <dialog id="request-dialog" class="modal">
+    <form id="request-form" method="dialog">
+      <div class="modal-head"><div><div class="eyebrow">RESIDENT SERVICE</div><h2>Create collection request</h2></div><button type="button" class="icon-button" id="close-request-dialog" aria-label="Close">×</button></div>
+      <div class="field"><label for="form-category">Waste category</label><select id="form-category" required><option value="Organic">Organic</option><option value="Plastic">Plastic</option><option value="Paper & cardboard">Paper & cardboard</option><option value="Glass">Glass</option><option value="Metal">Metal</option><option value="E-waste">E-waste</option><option value="Potentially hazardous">Potentially hazardous</option><option value="Textile">Textile</option><option value="Mixed / unknown">Mixed / unknown</option></select></div>
+      <div class="field"><label for="form-quantity">Approximate quantity</label><select id="form-quantity"><option>Small bag</option><option>1–2 bags</option><option>Several bags</option><option>Bulky item</option></select></div>
+      <div class="field"><label for="form-zone">Collection zone</label><select id="form-zone" required></select></div>
+      <div class="field"><label for="form-location">Pickup location / landmark</label><input id="form-location" required maxlength="140" placeholder="e.g. Block B, near community park"></div>
+      <div class="field"><label for="form-notes">Additional notes</label><textarea id="form-notes" rows="2" maxlength="400" placeholder="Optional details"></textarea></div>
+      <div class="modal-actions"><button type="button" class="button secondary" id="cancel-request">Cancel</button><button type="submit" class="button primary">Submit request</button></div>
+    </form>
+  </dialog>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "Z-01",
+    "name": "Garden Cross",
+    "compliance": 0.91,
+    "pendingRequests": 3,
+    "avgServiceMinutes": 12,
+    "lat": 30.912,
+    "lng": 75.846,
+    "color": "#25875b"
+  },
+  {
+    "id": "Z-02",
+    "name": "University Gate",
+    "compliance": 0.72,
+    "pendingRequests": 6,
+    "avgServiceMinutes": 18,
+    "lat": 30.904,
+    "lng": 75.858,
+    "color": "#c58a2d"
+  },
+  {
+    "id": "Z-03",
+    "name": "Market Lane",
+    "compliance": 0.48,
+    "pendingRequests": 8,
+    "avgServiceMinutes": 22,
+    "lat": 30.897,
+    "lng": 75.874,
+    "color": "#bd655b"
+  },
+  {
+    "id": "Z-04",
+    "name": "Riverfront Point",
+    "compliance": 0.84,
+    "pendingRequests": 4,
+    "avgServiceMinutes": 15,
+    "lat": 30.914,
+    "lng": 75.872,
+    "color": "#25875b"
+  },
+  {
+    "id": "Z-05",
+    "name": "Industrial Gate",
+    "compliance": 0.59,
+    "pendingRequests": 5,
+    "avgServiceMinutes": 25,
+    "lat": 30.887,
+    "lng": 75.852,
+    "color": "#c58a2d"
+  }
+]

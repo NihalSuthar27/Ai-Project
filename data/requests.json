@@ -1,0 +1,93 @@
+[
+  {
+    "id": "ES-1048",
+    "category": "Organic",
+    "emoji": "\ud83e\udd6c",
+    "zoneId": "Z-01",
+    "location": "Block A community garden",
+    "quantity": "1\u20132 bags",
+    "priority": "Normal",
+    "status": "COMPLETED",
+    "submittedAt": "2026-10-23T09:20:00Z",
+    "notes": "Food scraps",
+    "confidence": 0.96
+  },
+  {
+    "id": "ES-1049",
+    "category": "Plastic",
+    "emoji": "\u267b\ufe0f",
+    "zoneId": "Z-02",
+    "location": "Central Market, lane 2",
+    "quantity": "Several bags",
+    "priority": "Medium",
+    "status": "SCHEDULED",
+    "submittedAt": "2026-10-23T11:05:00Z",
+    "notes": "Plastic bottles and containers",
+    "confidence": 0.91
+  },
+  {
+    "id": "ES-1050",
+    "category": "E-waste",
+    "emoji": "\ud83d\udd0b",
+    "zoneId": "Z-03",
+    "location": "Riverfront apartments, gate",
+    "quantity": "Small bag",
+    "priority": "High",
+    "status": "NEEDS_REVIEW",
+    "submittedAt": "2026-10-23T13:40:00Z",
+    "notes": "Old batteries and cables",
+    "confidence": 0.67
+  },
+  {
+    "id": "ES-1051",
+    "category": "Paper & cardboard",
+    "emoji": "\ud83d\udce6",
+    "zoneId": "Z-04",
+    "location": "University hostel block C",
+    "quantity": "Several bags",
+    "priority": "Normal",
+    "status": "SUBMITTED",
+    "submittedAt": "2026-10-24T07:25:00Z",
+    "notes": "Cardboard boxes",
+    "confidence": 0.93
+  },
+  {
+    "id": "ES-1052",
+    "category": "Glass",
+    "emoji": "\ud83e\uded9",
+    "zoneId": "Z-02",
+    "location": "Market back entrance",
+    "quantity": "Small bag",
+    "priority": "Medium",
+    "status": "APPROVED",
+    "submittedAt": "2026-10-24T08:15:00Z",
+    "notes": "Glass bottles; not broken",
+    "confidence": 0.88
+  },
+  {
+    "id": "ES-1053",
+    "category": "Potentially hazardous",
+    "emoji": "\u26a0\ufe0f",
+    "zoneId": "Z-05",
+    "location": "Industrial Link, building 4",
+    "quantity": "Small bag",
+    "priority": "High",
+    "status": "IN_PROGRESS",
+    "submittedAt": "2026-10-24T09:10:00Z",
+    "notes": "Unknown container; manual review requested",
+    "confidence": 0.55
+  },
+  {
+    "id": "ES-1054",
+    "category": "Textile",
+    "emoji": "\ud83e\uddf5",
+    "zoneId": "Z-01",
+    "location": "North Gardens, house 18",
+    "quantity": "1\u20132 bags",
+    "priority": "Normal",
+    "status": "SUBMITTED",
+    "submittedAt": "2026-10-24T10:10:00Z",
+    "notes": "Old clothing",
+    "confidence": 0.89
+  }
+]

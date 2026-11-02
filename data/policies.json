@@ -1,0 +1,78 @@
+{
+  "demoNotice": "Illustrative prototype policies only. Verify all disposal instructions against the relevant municipality's rules before real-world use.",
+  "confidenceThreshold": 0.8,
+  "categories": {
+    "Organic": {
+      "label": "Organic waste",
+      "emoji": "\ud83e\udd6c",
+      "risk": "low",
+      "recyclable": false,
+      "advice": "Place food scraps and garden waste in the locally designated wet/organic-waste container. Keep plastic packaging out.",
+      "review": false
+    },
+    "Plastic": {
+      "label": "Plastic",
+      "emoji": "\u267b\ufe0f",
+      "risk": "low",
+      "recyclable": true,
+      "advice": "Empty and, where locally accepted, rinse the item. Place it in the designated dry-recyclables stream; local acceptance varies by resin and condition.",
+      "review": false
+    },
+    "Paper & cardboard": {
+      "label": "Paper & cardboard",
+      "emoji": "\ud83d\udce6",
+      "risk": "low",
+      "recyclable": true,
+      "advice": "Keep paper dry and reasonably clean. Greasy or food-contaminated paper may not be accepted in paper recycling.",
+      "review": false
+    },
+    "Glass": {
+      "label": "Glass",
+      "emoji": "\ud83e\uded9",
+      "risk": "medium",
+      "recyclable": true,
+      "advice": "Follow local glass collection rules. Wrap broken glass securely and label it to reduce injury risk.",
+      "review": false
+    },
+    "Metal": {
+      "label": "Metal",
+      "emoji": "\ud83e\udd6b",
+      "risk": "low",
+      "recyclable": true,
+      "advice": "Empty the item and use the locally designated metal-recycling stream if accepted.",
+      "review": false
+    },
+    "E-waste": {
+      "label": "Electronic waste",
+      "emoji": "\ud83d\udd0b",
+      "risk": "high",
+      "recyclable": false,
+      "advice": "Do not place electronics or batteries in ordinary household waste. Use an authorized e-waste or battery collection channel and request municipal guidance.",
+      "review": true
+    },
+    "Potentially hazardous": {
+      "label": "Potentially hazardous waste",
+      "emoji": "\u26a0\ufe0f",
+      "risk": "high",
+      "recyclable": false,
+      "advice": "Do not mix this item with ordinary waste. Avoid opening or handling leaking contents and contact the appropriate municipal or specialist collection service.",
+      "review": true
+    },
+    "Textile": {
+      "label": "Textile waste",
+      "emoji": "\ud83e\uddf5",
+      "risk": "low",
+      "recyclable": true,
+      "advice": "Reuse or donate clean, usable textiles where possible. Check local textile collection options for damaged material.",
+      "review": false
+    },
+    "Mixed / unknown": {
+      "label": "Mixed or unidentified waste",
+      "emoji": "\u2754",
+      "risk": "medium",
+      "recyclable": false,
+      "advice": "Separate visible materials if safe to do so. If the material is unclear or potentially hazardous, request a human review before disposal.",
+      "review": true
+    }
+  }
+}
